@@ -17,7 +17,12 @@ define('P_ROOT', dirname(__FILE__) . DS );
 
 define('REL_BASE_DIR', ".." . DS);
 define('REL_BASE_SITE', "../");
-define('ciCFG_FILE', REL_BASE_DIR . 'conf' . DS . 'site.cfg' );
+define('HOST', explode('.', $_SERVER['HTTP_HOST'])[0]);
+if(file_exists(REL_BASE_SITE . '..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg') === TRUE){
+    define('ciCFG_FILE', REL_BASE_SITE . '..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg' );
+}else{
+    define('ciCFG_FILE', REL_BASE_SITE . 'conf' . DS . 'site.cfg' );
+}
 define('CLASSES', REL_BASE_DIR . 'classes' . DS);
 define('DB_TABLES', CLASSES . 'tables' . DS);
 define('MEMBER', CLASSES . 'member' . DS);

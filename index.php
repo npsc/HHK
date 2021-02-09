@@ -18,7 +18,13 @@ use HHK\sec\SecurityComponent;
  */
 define('DS', DIRECTORY_SEPARATOR);
 define('P_ROOT', dirname(__FILE__) . DS);
-define('ciCFG_FILE', P_ROOT . 'conf' . DS . 'site.cfg');
+define('HOST', explode('.', $_SERVER['HTTP_HOST'])[0]);
+if(file_exists('..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg') === TRUE){
+    define('ciCFG_FILE', '..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg' );
+}else{
+    define('ciCFG_FILE', 'conf' . DS . 'site.cfg' );
+}
+
 date_default_timezone_set('America/Chicago');
 
 require ('vendor/autoload.php');

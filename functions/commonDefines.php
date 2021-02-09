@@ -8,6 +8,8 @@ define('P_ROOT', dirname(__FILE__) . DS );
 define('REL_BASE_DIR', '..' . DS);
 define('REL_BASE_SITE', '../');
 
+define('HOST', explode('.', $_SERVER['HTTP_HOST'])[0]);
+
 
 // Find the vendor directory
 $dirxx = '../vendor';
@@ -27,7 +29,11 @@ if (file_exists($dirxx) === FALSE) {
 define('THIRD_PARTY', $dirxx . DS);
 
 // Configuration filename and paths
-define('ciCFG_FILE', REL_BASE_DIR . 'conf' . DS . 'site.cfg' );
+if(file_exists(REL_BASE_DIR . '..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg') === TRUE){
+    define('ciCFG_FILE', REL_BASE_DIR . '..' . DS . 'hhkconf' . DS . HOST . DS . 'site.cfg' );
+}else{
+    define('ciCFG_FILE', REL_BASE_DIR . 'conf' . DS . 'site.cfg' );
+}
 
 // Common Directory Names
 define('ADMIN_DIR', REL_BASE_DIR . 'admin' . DS);
